@@ -38,13 +38,7 @@ RAW → STAGING → MART
 
 ```
 /data
-  /raw
-  /processed
-
 /sql
-  /staging
-  /marts
-
 /analysis
 ```
 
