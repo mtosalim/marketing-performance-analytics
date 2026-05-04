@@ -1,188 +1,141 @@
-# 📊 Marketing Performance Analytics
+# Marketing Performance Analytics
 
-## 🇧🇷 Sobre o projeto
-
-Esse projeto tem como objetivo analisar a performance de campanhas e anúncios de tráfego pago de um e-commerce próprio, no modelo de dropshipping, focando em responder uma pergunta simples:
-
-> **Quais campanhas e criativos realmente geram resultado e onde estou perdendo dinheiro?**
-
-Os dados utilizados são reais (extraídos de campanhas no meta ads), contendo métricas como:
-
-* investimento (ad spend)
-* impressões
-* cliques
-* conversões
-* receita
-* etc
-
+## 🇧🇷 Visão Geral
 <img width="1294" height="733" alt="Screenshot_3" src="https://github.com/user-attachments/assets/a26144a5-c2a0-4a5f-8b2c-368f614a2639" />
+Projeto de análise de performance de campanhas de marketing digital, com foco em geração de insights de negócio a partir de dados de mídia paga.
 
-## Objetivos
-
-* Identificar campanhas com melhor e pior performance (CBO, ABO)
-* Entender relação entre métricas (CTR, CPC, conversão)
-* Avaliar eficiência de investimento (CPA, ROAS)
-* Encontrar oportunidades de otimização através da análise de dados
+Os dados foram extraídos de campanhas reais (Meta Ads), tratados e organizados seguindo arquitetura **Medallion (Bronze → Silver → Gold)** e explorados em dashboard no Power BI.
 
 ---
 
-## Estrutura do projeto
+## Stack Utilizada
 
-O projeto segue uma estrutura inspirada em ambiente real de dados:
-
-```
-RAW → STAGING → MART
-```
-
-### Estrutura de pastas
-
-```
-/data
-/sql
-/analysis
-```
+- SQL Server (modelagem e transformação)
+- Power BI (visualização)
+- Python (pré-processamento pontual)
+- CSV (fonte de dados)
 
 ---
 
-## 🔧 Etapas
+## Arquitetura de Dados
 
-### 1. RAW
+### Bronze
+- Dados brutos importados via `BULK INSERT`
+- Sem tratamento
+- Tipos como `VARCHAR`
 
-Dados brutos exportados das plataformas de anúncios (sem tratamento)
+### Silver
+- Limpeza e padronização:
+  - Conversão de tipos (`CAST`, `TRY_CAST`)
+  - Remoção de separadores numéricos
+  - Tratamento de nulos
+- Dados prontos para análise
 
-### 2. STAGING
-
-* limpeza de dados
-* padronização de colunas
-* tratamento de nulos
-* criação de métricas básicas (CTR, CPC)
-
-### 3. MART
-
-Criação de tabelas analíticas com foco em negócio:
-
-* performance por campanha
-* performance por anúncio
-
----
-
-## Principais métricas
-
-* **CPA (Custo por aquisição)**
-* **ROAS (Retorno sobre investimento)**
-* **CTR (Taxa de clique)**
-* **CPC (Custo por clique)**
+### Gold
+- Camada analítica com queries focadas em negócio:
+  - KPIs agregados
+  - Funil de conversão
+  - Performance por campanha
+  - Comparação por tipo de criativo (vídeo vs imagem)
+  - Análise de retenção de vídeo
 
 ---
 
-## Análises realizadas
+## Principais Métricas
 
-* Ranking de campanhas por ROAS
-* Identificação de campanhas com alto gasto e baixo retorno
-* Relação entre CTR e conversão
-* Performance de criativos (anúncios)
+- Spend
+- Revenue
+- ROAS
+- CTR
+- CPC
 
----
-
-## Principais insights
-
-
+Funil:
+- Click → Add to Cart → Checkout → AddPayment Info → Checkout
 
 ---
 
-## Limitações
+## Principais Insights
 
-* Não há identificação de usuário (customer_id)
-* Não é possível calcular LTV ou churn real
-* Análise focada em performance de mídia (topo e meio de funil)
-
----
-
-# 🇺🇸 About the project
-
-This project aims to analyze paid media campaign and ad performance of my e-commerce, using the business model dropshipping, focusing on answering a simple question:
-
-> **Which campaigns and creatives actually drive results — and where am I wasting money?**
-
-The dataset contains real campaign data, including:
-
-* spend
-* impressions
-* clicks
-* conversions
-* revenue
-* etc
+- Campanhas com criativos em vídeo apresentaram melhor performance quando há alta retenção, com isto, a melhor coisa a se fazer seria focar em criação de novos criativos com base nos que estão performando melhor.
+- Retenção de vídeo está diretamente relacionada ao ROAS.
+- Diferença de eficiência entre campanhas ABO vs CBO.
+- Gargalos podem identificados nas etapas finais do funil, porém comparados as métricas do mercado tradicional, o funil se encontra saudável.
 
 ---
 
-##  Goals
+## Estrutura do Projeto
 
-* Identify top and underperforming campaigns
-* Understand relationships between metrics (CTR, CPC, conversion)
-* Evaluate investment efficiency (CPA, ROAS)
-* Find optimization opportunities
+- /data → .csv files
+- /sql → .sql files
+- /analytics → .pbix file
 
----
+----
 
-## Project structure
+# 🇺🇸 Overview
 
-This project follows a real-world data workflow:
+Data analytics project focused on marketing campaign performance, generating business insights from paid media data.
 
-```
-RAW → STAGING → MART
-```
+Data was extracted from real Meta Ads campaigns, processed using a **Medallion architecture (Bronze → Silver → Gold)** and visualized in Power BI.
 
 ---
 
-## 🔧 Steps
+## Tech Stack
 
-### 1. RAW
-
-Raw data exported from ad platforms (no transformation)
-
-### 2. STAGING
-
-* data cleaning
-* column standardization
-* null handling
-* basic metric calculations (CTR, CPC)
-
-### 3. MART
-
-Business-focused analytical tables:
-
-* campaign performance
-* ad-level performance
+- SQL Server (data modeling & transformation)
+- Power BI (dashboard & visualization)
+- Python (light preprocessing)
+- CSV (data source)
 
 ---
 
-## Key metrics
+## Data Architecture
 
-* **CPA (Cost per acquisition)**
-* **ROAS (Return on ad spend)**
-* **CTR (Click-through rate)**
-* **CPC (Cost per click)**
+### Bronze
+- Raw data ingested via `BULK INSERT`
+- No transformations
+- Stored as `VARCHAR`
+
+### Silver
+- Data cleaning and standardization:
+  - Type conversion (`CAST`, `TRY_CAST`)
+  - Removal of numeric formatting
+  - Null handling
+- Analysis-ready dataset
+
+### Gold
+- Business-oriented analytical layer:
+  - Aggregated KPIs
+  - Conversion funnel
+  - Campaign performance
+  - Creative analysis (video vs image)
+  - Video retention analysis
+
+---
+
+## Key Metrics
+
+- Spend
+- Revenue
+- ROAS
+- CTR
+- CPC
+
+Funnel:
+- Click → Add to Cart → Checkout → Add Payment Info → Conversions
 
 ---
 
-## Analysis
+## Key Insights
 
-* Top campaigns by ROAS
-* High spend vs low return detection
-* CTR vs conversion relationship
-* Creative (ad) performance
-
----
-
-## Key insights
-
+- Video campaigns perform better when retention is high, the best approach right now would be to focus on new creatives based on the best performing ones.
+- Strong relationship between video retention and ROAS.
+- Efficiency differences between ABO and CBO campaigns.
+- Conversion drop-offs in final funnel stages, but considering the margins for the default and traditional market, the numbers are ok.
 
 ---
 
-## Limitations
+## Project Structure
 
-* No user-level data (no customer_id)
-* No real LTV or churn analysis
-* Focused on media performance (top/mid funnel)
-
----
+- /data → .csv files
+- /sql → .sql files
+- /analytics → .pbix file
