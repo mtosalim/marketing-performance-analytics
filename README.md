@@ -1,12 +1,11 @@
 # Marketing Performance Analytics
 
 ## 🇧🇷 Visão Geral
+
+Projeto de análise de performance de campanhas de marketing digital, com foco em geração de insights de negócio a partir de dados de mídia paga. Os dados foram extraídos de campanhas reais (Meta Ads), tratados e organizados seguindo arquitetura **Medallion (Bronze → Silver → Gold)** e explorados em dashboard no Power BI.
+
 <img width="1294" height="733" alt="Screenshot_3" src="https://github.com/user-attachments/assets/a26144a5-c2a0-4a5f-8b2c-368f614a2639" />
-Projeto de análise de performance de campanhas de marketing digital, com foco em geração de insights de negócio a partir de dados de mídia paga.
 
-Os dados foram extraídos de campanhas reais (Meta Ads), tratados e organizados seguindo arquitetura **Medallion (Bronze → Silver → Gold)** e explorados em dashboard no Power BI.
-
----
 
 ## Stack Utilizada
 
