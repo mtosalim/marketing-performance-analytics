@@ -15,7 +15,7 @@ Os dados utilizados são reais (extraídos de campanhas no meta ads), contendo m
 * receita
 * etc
 
----
+<img width="1294" height="733" alt="Screenshot_3" src="https://github.com/user-attachments/assets/a26144a5-c2a0-4a5f-8b2c-368f614a2639" />
 
 ## Objetivos
 
